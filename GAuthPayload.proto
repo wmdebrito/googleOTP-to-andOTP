@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+message GAuthPayload {
+  enum Alg {
+    ERROR = 0;
+    SHA1 = 1;
+  }
+
+  enum OtpType {
+    INVALID = 0;
+    HOTP = 1;
+    TOTP = 2;
+  }
+
+  message Payload {
+    bytes secret = 1;
+    string name = 2;
+    string issuer = 3;
+    Alg algorithm = 4;
+    int32 digits = 5;
+    OtpType type = 6;
+    int64 counter = 7;
+  }
+
+  repeated Payload payload = 1;
+  int32 version = 2;
+  int32 batch_size = 3;
+  int32 batch_index = 4;
+  int32 batch_id = 5;
+}

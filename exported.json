@@ -1,0 +1,1 @@
+[{"algorithm": "SHA1", "digits": "6", "type": "HOTP", "secret": "JJJJDJSJSJSJSJSJESJWJEJSJEEA", "label": "Test", "issuer": "", "thumbnail": ""}, {"algorithm": "SHA1", "digits": "6", "type": "TOTP", "secret": "2IXV3RECK3FR3KRKAZPJW2HUXNQHKLIFQRV7TCSQM6T755QVP2J43Q5I", "label": "Amazon:765595469557", "issuer": "", "thumbnail": ""}]
