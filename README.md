@@ -34,7 +34,7 @@ $ base64 -D input.txt |protoc --decode_raw
 ### How to
 1. `git clone https://github.com/wmdebrito/googleOTP-to-andOTP.git`
 2. Go to export account on Google App Authenticator
-3. Scan the QRCode, for example using: https://qrscanneronline.com/
+3. Scan the QRCode, for example using: https://qrcodescan.in/ (Tip, it is hard get it right when you have too many entries. The QRCodes the app generates are hard the read with Webcam. You can export it is smaller batches 5-8 entries at time or Use another phone that have focus adjustment)
 4. copy the scanned string `(otpauth-migration://offline?data=CiEKEUpSkaZJ...)` to a file (`input.txt` for example)
    - if you have too many accounts, more than 1 QRCode will be generated, put the string scanned in each line of the file.
 5. save the `input.txt` file
