@@ -38,6 +38,7 @@ $ base64 -D input.txt |protoc --decode_raw
 4. copy the scanned string `(otpauth-migration://offline?data=CiEKEUpSkaZJ...)` to a file (`input.txt` for example)
    - if you have too many accounts, more than 1 QRCode will be generated, put the string scanned in each line of the file.
 5. save the `input.txt` file
-6. run the script `python3 toAndOTP.py <input file> <output file>.json`
+6. run `rm GAuthPayload_pb2.py && protoc --python_out=. GAuthPayload.proto`
+7. run the script `python3 toAndOTP.py <input file> <output file>.json`
    - example `$ python3 toAndOTP.py ~/input.txt ~/exported.json`
-7. now transfer the exported file to your phone and restore backup (plain text).**IMPORTANT** Make a BACKUP of your andOTP accounts before importing the exported file
+8. now transfer the exported file to your phone and restore backup (plain text).**IMPORTANT** Make a BACKUP of your andOTP accounts before importing the exported file
