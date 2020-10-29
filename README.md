@@ -4,7 +4,7 @@ Export googleOTP app to anOTP
 ## This is a basic python3 script used to export a json file from a QR code generated from Google Authenticator App
 ### Pre-requirements
 * Protoc must be installed (https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers)
-* Python3
+* Python 3
 
 ## Protobuf/protoc parser
 ### Below and example of parsing base64 to protobuf format, used to reverse engineering (input.txt with 1 base64 entry URLdecoded)
@@ -33,26 +33,23 @@ $ base64 -D input.txt |protoc --decode_raw
 
 ### How to
 1. `git clone https://github.com/wmdebrito/googleOTP-to-andOTP.git`
-2. Go to export account on Google App Authenticator
-3. Scan the QRCode, for example using: https://qrcodescan.in/ (Tip, it is hard get it right when you have too many entries. The QRCodes the app generates are hard the read with Webcam. You can export it is smaller batches 5-8 entries at time or Use another phone that have focus adjustment)
-4. copy the scanned string `(otpauth-migration://offline?data=CiEKEUpSkaZJ...)` to a file (`input.txt` for example)
+2. Setup a virtualenv:
+
+   1. `python3 -m virtualenv venv`
+   2. `source venv/bin/activate`
+   3. Install requirements: `pip install -r requirements.txt`
+3. Go to export account on Google App Authenticator
+4. Scan the QRCode, for example using: https://qrcodescan.in/ (Tip: it is hard to get it right when you have too many entries. The QRCodes the app generates are hard to read with a webcam. You can export it in smaller batches 5-8 entries at a time or use another phone that has focus adjustment)
+5. Copy the scanned string `(otpauth-migration://offline?data=CiEKEUpSkaZJ...)` to a file (`input.txt` for example)
    - if you have too many accounts, more than 1 QRCode will be generated, put the string scanned in each line of the file.
-5. save the `input.txt` file
-6. run `rm GAuthPayload_pb2.py && protoc --python_out=. GAuthPayload.proto`
-7. run the script `python3 toAndOTP.py <input file> <output file>.json`
-   - example `$ python3 toAndOTP.py ~/input.txt ~/exported.json`
-   
-Also https://github.com/jay-aye-see-kay suggested the steps below in case the above fails:
- - set up a virtual env
- 
-`python 3 -m venv venv`
+6. Save the `input.txt` file
+7. Run `rm GAuthPayload_pb2.py && protoc --python_out=. GAuthPayload.proto`
+8. Run the script `python3 toAndOTP.py <input file> <output file>.bin`
+   - Example: `$ python3 toAndOTP.py ~/input.txt ~/exported.bin`
 
-`source venv/bin/activate`
+   The script will prompt for a password that is used to encrypt the exported data.
+   The given password will be used in andOTP to decrypt the exported data.
 
- - install python protobuf package (you need an OS install of protobuf too, as mentioned in the pre-requirements)
- 
-`pip install protobuf`
+8. Now transfer the exported file to your phone and restore backup (encrypted).
 
-`python toAndOTP.py <input file> <output file>.json`
-
-8. now transfer the exported file to your phone and restore backup (plain text).**IMPORTANT** Make a BACKUP of your andOTP accounts before importing the exported file
+   **IMPORTANT**: Make a BACKUP of your andOTP accounts before importing the exported file
