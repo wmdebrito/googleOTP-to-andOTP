@@ -41,4 +41,18 @@ $ base64 -D input.txt |protoc --decode_raw
 6. run `rm GAuthPayload_pb2.py && protoc --python_out=. GAuthPayload.proto`
 7. run the script `python3 toAndOTP.py <input file> <output file>.json`
    - example `$ python3 toAndOTP.py ~/input.txt ~/exported.json`
+   
+Also https://github.com/jay-aye-see-kay suggested the steps below in case the above fails:
+ - set up a virtual env
+ 
+`python 3 -m venv venv`
+
+`source venv/bin/activate`
+
+ - install python protobuf package (you need an OS install of protobuf too, as mentioned in the pre-requirements)
+ 
+`pip install protobuf`
+
+`python toAndOTP.py <input file> <output file>.json`
+
 8. now transfer the exported file to your phone and restore backup (plain text).**IMPORTANT** Make a BACKUP of your andOTP accounts before importing the exported file
