@@ -4,6 +4,7 @@ from GAuthPayload_pb2 import GAuthPayload
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.backends import default_backend
 import sys
 import secrets
 import getpass
@@ -66,7 +67,8 @@ def encrypt(andOptData, password):
 
     # Derive the key used to encrypt the JSON data
     kdf = PBKDF2HMAC(algorithm=hashes.SHA1(), length=32,
-                     salt=salt, iterations=iterations)
+                     salt=salt, iterations=iterations,
+                     backend=default_backend())
     key = kdf.derive(password.encode("utf-8"))
 
     # Encrypt the JSON data
